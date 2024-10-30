@@ -1,6 +1,7 @@
 vim.opt.relativenumber = true
 vim.opt.number = true
 vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 vim.opt.smarttab = true
@@ -21,11 +22,11 @@ vim.opt.conceallevel = 2
 vim.opt.scrolloff = 8
 vim.opt.clipboard = "unnamedplus"
 
-if vim.fn.has("wsl") == 1 then
-  vim.api.nvim_create_autocmd("TextYankPost", {
-    group = vim.api.nvim_create_augroup("Yank", { clear = true }),
-    callback = function()
-      vim.fn.system("clip.exe", vim.fn.getreg("\""))
-    end,
-  })
-end
+vim.api.nvim_create_autocmd("FileType", {
+pattern = "markdown",
+callback = function()
+vim.opt_local.shiftwidth = 2
+vim.opt_local.softtabstop = 2
+vim.opt_local.expandtab = true
+end,
+})
