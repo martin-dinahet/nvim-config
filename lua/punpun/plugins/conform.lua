@@ -13,6 +13,7 @@ return {
       json = { "prettierd" },
 
       lua = { "stylua" },
+      lua = { "mdformat" },
     },
     notify_on_error = false,
     format_on_save = {
