@@ -11,6 +11,8 @@ return {
       html = { "prettierd" },
       css = { "prettierd" },
       json = { "prettierd" },
+
+      lua = { "stylua" },
     },
     notify_on_error = false,
     format_on_save = {
