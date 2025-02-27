@@ -7,6 +7,7 @@ return {
 	},
 	opts = {
 		defaults = {
+      path_display = {},
 			mappings = {
 				i = {
 					["<esc>"] = "close",

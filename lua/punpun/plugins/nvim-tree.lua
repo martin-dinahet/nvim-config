@@ -16,8 +16,7 @@ return {
     },
     renderer = {
       root_folder_label = function()
-        vim.cmd([[highlight NvimTreeRootFolderLabel guifg=Blue guibg=NONE]])
-        return "󱞳   ../"
+        return ""
       end,
     }
   },
