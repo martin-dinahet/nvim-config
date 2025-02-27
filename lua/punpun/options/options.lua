@@ -21,12 +21,13 @@ vim.opt.showmode = false
 vim.opt.conceallevel = 2
 vim.opt.scrolloff = 8
 vim.opt.clipboard = "unnamedplus"
+vim.opt.timeout = false
 
 vim.api.nvim_create_autocmd("FileType", {
-pattern = "markdown",
-callback = function()
-vim.opt_local.shiftwidth = 2
-vim.opt_local.softtabstop = 2
-vim.opt_local.expandtab = true
-end,
+  pattern = "markdown",
+  callback = function()
+    vim.opt_local.shiftwidth = 2
+    vim.opt_local.softtabstop = 2
+    vim.opt_local.expandtab = true
+  end,
 })
