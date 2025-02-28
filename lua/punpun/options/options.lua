@@ -21,7 +21,6 @@ vim.opt.showmode = false
 vim.opt.conceallevel = 2
 vim.opt.scrolloff = 8
 vim.opt.clipboard = "unnamedplus"
-vim.opt.timeout = false
 
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "markdown",
