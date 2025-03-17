@@ -3,12 +3,15 @@ return {
   config = function()
     require('lspsaga').setup({
       ui = {
-        code_action = ''
+        code_action = " "
+      },
+      symbol_in_winbar = {
+        enable = false,
       },
       finder = {
         keys = {
           shuttle = "<tab>",
-          toggle_or_open = "<cr>",
+          toggle_or_open = "o",
         },
       },
       definition = {
