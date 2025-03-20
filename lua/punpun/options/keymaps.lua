@@ -8,6 +8,7 @@ local function map(shortcut, command, mode)
 end
 
 
+map("-", "Oil")
 map("<esc>", "nohlsearch")
 map("<a-d>", "Lspsaga term_toggle", "n")
 map("<a-d>", "Lspsaga term_toggle", "t")
