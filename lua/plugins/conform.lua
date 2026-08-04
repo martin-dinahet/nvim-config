@@ -24,7 +24,6 @@ return {
 
       return {
         timeout_ms = 1000,
-        lsp_format = "fallback",
       }
     end,
   },

@@ -1,17 +1,3 @@
-local function lsp_status()
-    local clients = vim.lsp.get_clients({ bufnr = 0 })
-    if #clients == 0 then
-        return ""
-    end
-
-    local names = {}
-    for _, client in ipairs(clients) do
-        names[#names + 1] = client.name
-    end
-
-    return "lsp " .. table.concat(names, ",")
-end
-
 return {
     "nvim-lualine/lualine.nvim",
     version = false,
@@ -40,9 +26,9 @@ return {
         },
         sections = {
             lualine_a = { "mode" },
-            lualine_b = { "branch", "diff", "diagnostics" },
+            lualine_b = { "branch", "diff" },
             lualine_c = { "filename" },
-            lualine_x = { lsp_status },
+            lualine_x = {},
             lualine_y = {},
             lualine_z = { "filetype" },
         },
