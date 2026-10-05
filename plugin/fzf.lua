@@ -16,11 +16,16 @@ require("fzf-lua").setup({
 			},
 		},
 	},
+	-- Respect .gitignore outside git repos too, and always skip node_modules
 	files = {
 		previewer = true,
+		fd_opts = "--color=never --type f --type l --exclude .git --exclude .jj --exclude node_modules --no-require-git",
+		rg_opts = [[--color=never --files -g "!.git" -g "!.jj" -g "!node_modules" --no-require-git]],
 	},
 	grep = {
 		previewer = "bat",
+		rg_opts = "--column --line-number --no-heading --color=always --smart-case --max-columns=4096 "
+			.. '-g "!node_modules" --no-require-git -e',
 	},
 })
 
