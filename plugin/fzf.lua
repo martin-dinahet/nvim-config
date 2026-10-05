@@ -19,6 +19,9 @@ require("fzf-lua").setup({
 	files = {
 		previewer = true,
 	},
+	keymaps = {
+		modes = { "n" },
+	},
 	grep = {
 		previewer = "bat",
 	},
@@ -29,4 +32,5 @@ local map = require("config.helpers").map
 map("n", "<leader>f", "<cmd>FzfLua files<CR>", "Find files")
 map("n", "<leader>g", "<cmd>FzfLua live_grep<CR>", "Live grep")
 map("n", "<leader>b", "<cmd>FzfLua buffers<CR>", "Buffers")
+map("n", "<leader>p", "<cmd>FzfLua keymaps<CR>", "Command palette (keymaps)")
 map("n", "<leader>S", "<cmd>FzfLua lsp_live_workspace_symbols<CR>", "Workspace symbols")
