@@ -37,7 +37,7 @@ vim.lsp.config("lua_ls", {
 	},
 })
 
--- Neovim provides K, grn, gra, grr, gri, grt, [d and ]d by default
+-- Neovim also provides [d and ]d for diagnostics by default
 vim.api.nvim_create_autocmd("LspAttach", {
 	group = require("config.helpers").augroup("lsp-attach"),
 	callback = function(ev)
@@ -46,6 +46,16 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 		helpers.buf_nmap(ev.buf, "gd", vim.lsp.buf.definition, "Go to definition")
 		helpers.buf_nmap(ev.buf, "g.", vim.lsp.buf.code_action, "Code action")
+
+		-- Neovim's default LSP keymaps, redefined with readable descriptions
+		helpers.buf_nmap(ev.buf, "K", vim.lsp.buf.hover, "Hover documentation")
+		helpers.buf_nmap(ev.buf, "grn", vim.lsp.buf.rename, "Rename symbol")
+		helpers.buf_nmap(ev.buf, "gra", vim.lsp.buf.code_action, "Code action")
+		helpers.buf_nmap(ev.buf, "grr", vim.lsp.buf.references, "Go to references")
+		helpers.buf_nmap(ev.buf, "gri", vim.lsp.buf.implementation, "Go to implementation")
+		helpers.buf_nmap(ev.buf, "grt", vim.lsp.buf.type_definition, "Go to type definition")
+		helpers.buf_nmap(ev.buf, "grx", vim.lsp.codelens.run, "Run code lens")
+		helpers.buf_nmap(ev.buf, "gO", vim.lsp.buf.document_symbol, "Document symbols")
 
 		if client:supports_method("textDocument/inlayHint") then
 			vim.lsp.inlay_hint.enable(true, { bufnr = ev.buf })
