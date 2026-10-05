@@ -22,6 +22,8 @@ require("fzf-lua").setup({
 	keymaps = {
 		modes = { "n" },
 		show_details = false,
+		-- Hide the mode column (only normal mode is listed)
+		fzf_opts = { ["--delimiter"] = "│", ["--with-nth"] = "2.." },
 		winopts = { height = 0.5, width = 0.5, preview = { hidden = true } },
 	},
 	grep = {
