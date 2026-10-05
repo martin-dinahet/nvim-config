@@ -1,4 +1,6 @@
+vim.loader.enable()
+
 require("config.options")
-require("config.lazy")
+require("config.pack")
 require("config.keymaps")
 require("config.autocmds")
