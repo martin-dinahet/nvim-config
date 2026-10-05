@@ -13,8 +13,12 @@ require("gitsigns").setup({
 		local helpers = require("config.helpers")
 		local gitsigns = require("gitsigns")
 
-		helpers.buf_nmap(bufnr, "]g", gitsigns.next_hunk, "Next git hunk")
-		helpers.buf_nmap(bufnr, "[g", gitsigns.prev_hunk, "Previous git hunk")
-		helpers.buf_nmap(bufnr, "<leader>g", gitsigns.preview_hunk, "Git hunk")
+		helpers.buf_nmap(bufnr, "]g", function()
+			gitsigns.nav_hunk("next")
+		end, "Next git hunk")
+		helpers.buf_nmap(bufnr, "[g", function()
+			gitsigns.nav_hunk("prev")
+		end, "Previous git hunk")
+		helpers.buf_nmap(bufnr, "<leader>hp", gitsigns.preview_hunk, "Preview git hunk")
 	end,
 })

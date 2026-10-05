@@ -29,4 +29,3 @@ local map = require("config.helpers").map
 map("n", "<leader>f", "<cmd>FzfLua files<CR>", "Find files")
 map("n", "<leader>g", "<cmd>FzfLua live_grep<CR>", "Live grep")
 map("n", "<leader>b", "<cmd>FzfLua buffers<CR>", "Buffers")
-map("n", "<leader>d", "<cmd>FzfLua diagnostics_document<CR>", "Diagnostics")

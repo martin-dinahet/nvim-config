@@ -14,45 +14,17 @@ require("mason").setup({
 	},
 })
 require("mason-lspconfig").setup({
-	automatic_installation = true,
 	ensure_installed = {
 		"lua_ls",
 		"stylua",
 	},
 })
 
-local capabilities = require("blink.cmp").get_lsp_capabilities()
-
-local on_attach = function(client, bufnr)
-	local opts = { noremap = true, silent = true, buffer = bufnr }
-	local set = vim.keymap.set
-	set("n", "gd", vim.lsp.buf.definition, opts)
-	set("n", "gd", vim.lsp.buf.type_definition, opts)
-	set("n", "gi", vim.lsp.buf.implementation, opts)
-	set("n", "gr", vim.lsp.buf.rename, opts)
-	set("n", "g.", vim.lsp.buf.code_action, opts)
-	set("n", "[d", vim.diagnostic.goto_prev, opts)
-	set("n", "]d", vim.diagnostic.goto_next, opts)
-	set("n", "K", vim.lsp.buf.hover, opts)
-
-	if client.supports_method("textDocument/inlayHint") then
-		vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
-	end
-end
-
-vim.lsp.util.open_floating_preview = (function(orig)
-	return function(contents, syntax, opts, ...)
-		opts = opts or {}
-		opts.border = opts.border or "rounded"
-		return orig(contents, syntax, opts, ...)
-	end
-end)(vim.lsp.util.open_floating_preview)
 vim.api.nvim_set_hl(0, "FloatBorder", { link = "BlinkCmpMenuBorder" })
 vim.api.nvim_set_hl(0, "NormalFloat", { link = "BlinkCmpMenu" })
 
 vim.lsp.config("*", {
-	capabilities = capabilities,
-	on_attach = on_attach,
+	capabilities = require("blink.cmp").get_lsp_capabilities(),
 })
 
 vim.lsp.config("lua_ls", {
@@ -65,24 +37,18 @@ vim.lsp.config("lua_ls", {
 	},
 })
 
-vim.lsp.config("biome", {
-	cmd = { "biome", "lsp-proxy" },
-	root_markers = { "biome.json", "biome.jsonc" },
-	capabilities = capabilities,
-	on_attach = on_attach,
-})
+-- Neovim provides K, grn, gra, grr, gri, grt, [d and ]d by default
+vim.api.nvim_create_autocmd("LspAttach", {
+	group = require("config.helpers").augroup("lsp-attach"),
+	callback = function(ev)
+		local helpers = require("config.helpers")
+		local client = assert(vim.lsp.get_client_by_id(ev.data.client_id))
 
-vim.lsp.config("eslint", {
-	cmd = { "vscode-eslint-language-server", "--stdio" },
-	root_markers = {
-		".eslintrc",
-		".eslintrc.js",
-		".eslintrc.cjs",
-		".eslintrc.yaml",
-		".eslintrc.yml",
-		"eslint.config.js",
-		"package.json",
-	},
-	capabilities = capabilities,
-	on_attach = on_attach,
+		helpers.buf_nmap(ev.buf, "gd", vim.lsp.buf.definition, "Go to definition")
+		helpers.buf_nmap(ev.buf, "g.", vim.lsp.buf.code_action, "Code action")
+
+		if client:supports_method("textDocument/inlayHint") then
+			vim.lsp.inlay_hint.enable(true, { bufnr = ev.buf })
+		end
+	end,
 })

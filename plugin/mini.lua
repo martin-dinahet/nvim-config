@@ -1,12 +1,5 @@
-vim.pack.add({
-	"https://github.com/nvim-mini/mini.ai",
-	"https://github.com/nvim-mini/mini.pairs",
-	"https://github.com/nvim-mini/mini.move",
-	"https://github.com/nvim-mini/mini.splitjoin",
-	"https://github.com/nvim-mini/mini.surround",
-	"https://github.com/nvim-mini/mini.comment",
-	"https://github.com/nvim-mini/mini.bufremove",
-})
+-- Only the modules set up below are active
+vim.pack.add({ "https://github.com/nvim-mini/mini.nvim" })
 
 require("mini.ai").setup()
 require("mini.pairs").setup()
