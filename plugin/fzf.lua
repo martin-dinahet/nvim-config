@@ -21,6 +21,8 @@ require("fzf-lua").setup({
 	},
 	keymaps = {
 		modes = { "n" },
+		show_details = false,
+		winopts = { height = 0.5, width = 0.5, preview = { hidden = true } },
 	},
 	grep = {
 		previewer = "bat",
